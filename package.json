@@ -1,0 +1,22 @@
+{
+  "name": "ello-take-home-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "workspaces": [
+    "apps/frontend",
+    "apps/backend"
+  ],
+  "private": true,
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "turbo": "^2.0.3"
+  },
+  "packageManager": "npm@10.8.1"
+}
