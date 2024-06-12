@@ -3,16 +3,16 @@ export const getReadingList = (): string[] => {
   return readingList ? JSON.parse(readingList) : [];
 };
 
-export const addToReadingList = (bookTitle: string) => {
+export const addToReadingList = (bookId: string) => {
   const readingList = getReadingList();
-  if (!readingList.includes(bookTitle)) {
-    readingList.push(bookTitle);
+  if (!readingList.includes(bookId)) {
+    readingList.push(bookId);
     localStorage.setItem("readingList", JSON.stringify(readingList));
   }
 };
 
-export const removeFromReadingList = (bookTitle: string) => {
+export const removeFromReadingList = (bookId: string) => {
   const readingList = getReadingList();
-  const updatedReadingList = readingList.filter((title) => title !== bookTitle);
+  const updatedReadingList = readingList.filter((title) => title !== bookId);
   localStorage.setItem("readingList", JSON.stringify(updatedReadingList));
 };

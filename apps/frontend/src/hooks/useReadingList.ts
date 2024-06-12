@@ -12,13 +12,13 @@ export const useReadingList = () => {
     setReadingList(getReadingList());
   }, []);
 
-  const addBook = (bookTitle: string) => {
-    addToReadingList(bookTitle);
+  const addBook = (bookId: string) => {
+    addToReadingList(bookId);
     setReadingList(getReadingList());
   };
 
-  const removeBook = (bookTitle: string) => {
-    removeFromReadingList(bookTitle);
+  const removeBook = (bookId: string) => {
+    removeFromReadingList(bookId);
     setReadingList(getReadingList());
   };
 
