@@ -1,11 +1,6 @@
 import React from "react";
-import {
-  ListItem,
-  ListItemText,
-  ListItemSecondaryAction,
-  IconButton,
-} from "@mui/material";
-import { AddCircle, RemoveCircle } from "@mui/icons-material";
+import { Grid, Button, useTheme, Typography, Stack } from "@mui/material";
+import { BookmarkAddRounded, RemoveCircle } from "@mui/icons-material";
 import { Book } from "@/@types/Book";
 
 interface Props {
@@ -21,23 +16,45 @@ export const BookListItem: React.FC<Props> = ({
   onRemoveFromReadingList,
   isInReadingList,
 }) => {
+  const theme = useTheme();
   return (
-    <ListItem>
-      <ListItemText primary={book.title} secondary={`by ${book.author}`} />
-      <ListItemSecondaryAction>
-        {isInReadingList ? (
-          <IconButton
-            edge="end"
-            onClick={() => onRemoveFromReadingList(book.title)}
-          >
-            <RemoveCircle />
-          </IconButton>
-        ) : (
-          <IconButton edge="end" onClick={() => onAddToReadingList(book.title)}>
-            <AddCircle />
-          </IconButton>
-        )}
-      </ListItemSecondaryAction>
-    </ListItem>
+    <Grid
+      item
+      xs={6}
+      md={3}
+      style={{ display: "flex", flexDirection: "column", gap: 2 }}
+    >
+      <img
+        style={{ borderRadius: "4px" }}
+        src={book.coverPhotoURL}
+        width="100%"
+        alt={book.title}
+      />
+
+      <Typography gutterBottom variant="body1">
+        {book.title}
+      </Typography>
+      <Typography color={theme.palette.grey[500]} variant="body2">
+        By {book.author}
+      </Typography>
+      <div style={{ flex: 1 }}></div>
+      <Button
+        variant={"outlined"}
+        size="small"
+        color={isInReadingList ? `error` : `primary`}
+        startIcon={isInReadingList ? <RemoveCircle /> : <BookmarkAddRounded />}
+        onClick={() => {
+          //Since there is no unique id - concat with book title and reading level
+          let bookTitleReadingLevel = `${book.title}-${book.readingLevel}`;
+          if (isInReadingList) {
+            onRemoveFromReadingList(bookTitleReadingLevel);
+          } else {
+            onAddToReadingList(bookTitleReadingLevel);
+          }
+        }}
+      >
+        {isInReadingList ? `Remove` : "Add"}
+      </Button>
+    </Grid>
   );
 };
