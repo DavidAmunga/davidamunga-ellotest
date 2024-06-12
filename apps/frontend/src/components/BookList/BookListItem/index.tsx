@@ -36,12 +36,25 @@ export const BookListItem: React.FC<Props> = ({
           height: "100%",
         }}
       >
-        <img
-          style={{ borderRadius: "4px" }}
-          src={book.coverPhotoURL}
-          width="100%"
-          alt={book.title}
-        />
+        <div
+          style={{
+            overflow: "hidden",
+            borderRadius: "4px",
+            width: "100%",
+            cursor: "pointer",
+          }}
+        >
+          <motion.img
+            src={book.coverPhotoURL}
+            alt={book.title}
+            style={{
+              width: "100%",
+              display: "block",
+            }}
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.3 }}
+          />
+        </div>
 
         <Typography gutterBottom variant="body1">
           {book.title}
