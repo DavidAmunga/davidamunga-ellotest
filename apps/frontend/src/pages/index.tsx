@@ -47,6 +47,9 @@ const Home: React.FC = () => {
         alignItems="center"
         sx={{
           p: 2,
+          position: "sticky",
+          top: 0,
+          zIndex: 3,
           background: theme.palette.primary.dark,
         }}
       >
@@ -63,7 +66,13 @@ const Home: React.FC = () => {
         <SearchBooks books={books} />
       </Stack>
       <Container maxWidth={"md"} sx={{ py: 2 }}>
-        <Stack direction="row" spacing={2} sx={{ mb: 2 }} alignItems="center">
+        <Stack
+          direction="row"
+          justifyContent={"center"}
+          spacing={2}
+          sx={{ mb: 2 }}
+          alignItems="center"
+        >
           <ToggleButtonGroup
             value={showReadingList}
             exclusive

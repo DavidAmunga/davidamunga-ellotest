@@ -25,7 +25,7 @@ export const SearchBooks: React.FC<Props> = ({ books }) => {
         alignItems={"start"}
         sx={{
           px: 2,
-          borderRadius: "10px",
+          borderRadius: "20px",
           border: `4px solid ${theme.palette.primary.main}`,
           py: 2,
           backgroundColor: "#ffffff",
@@ -36,8 +36,10 @@ export const SearchBooks: React.FC<Props> = ({ books }) => {
         </Typography>
         <div style={{ display: "flex", flex: 1 }}></div>
         <Autocomplete
+          freeSolo
           fullWidth
           options={books}
+          groupBy={(option) => option.title.charAt(0)}
           noOptionsText={`No book exists called "${searchValue}"`}
           getOptionLabel={(book: Book) => book.title}
           renderInput={(params) => (

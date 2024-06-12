@@ -41,6 +41,7 @@ export const BookListItem: React.FC<Props> = ({
       <Button
         variant={"outlined"}
         size="small"
+        sx={{ borderRadius: "50px" }}
         color={isInReadingList ? `error` : `primary`}
         startIcon={isInReadingList ? <RemoveCircle /> : <BookmarkAddRounded />}
         onClick={() => {
