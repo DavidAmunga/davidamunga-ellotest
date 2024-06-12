@@ -36,24 +36,43 @@ export const BookListItem: React.FC<Props> = ({
           height: "100%",
         }}
       >
-        <div
-          style={{
-            overflow: "hidden",
-            borderRadius: "4px",
-            width: "100%",
-            cursor: "pointer",
-          }}
-        >
-          <motion.img
-            src={book.coverPhotoURL}
-            alt={book.title}
+        <div style={{ position: "relative", overflow: "hidden" }}>
+          {/* Book Image */}
+          <div
             style={{
+              overflow: "hidden",
+              borderRadius: "4px",
               width: "100%",
-              display: "block",
+              cursor: "pointer",
             }}
-            whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.3 }}
-          />
+          >
+            <motion.img
+              src={book.coverPhotoURL}
+              alt={book.title}
+              style={{
+                width: "100%",
+                display: "block",
+              }}
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.3 }}
+            />
+          </div>
+
+          <span
+            style={{
+              position: "absolute",
+              right: 5,
+              top: -10,
+              textAlign: "center",
+              borderRadius: "2px",
+              border: `3px solid ${theme.palette.primary.main}`,
+              backgroundColor: theme.palette.common.white,
+              color: theme.palette.primary.main,
+              padding: 4,
+            }}
+          >
+            {book.readingLevel}
+          </span>
         </div>
 
         <Typography gutterBottom variant="body1">

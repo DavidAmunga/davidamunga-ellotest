@@ -14,21 +14,30 @@ import { BookList } from "@/components/BookList";
 import { useBooks } from "@/hooks/useBooks";
 import { Book } from "@/@types/Book";
 import { useReadingList } from "@/hooks/useReadingList";
+import EmptyBookState from "@/components/BookList/EmptyBookState";
 
 const Home: React.FC = () => {
   const { books, loading, error } = useBooks();
   const { readingList, addBook, removeBook } = useReadingList();
+
+  const [searchValue, setSearchValue] = useState("");
 
   const [showReadingList, setShowReadingList] = useState(false);
 
   const theme = useTheme();
 
   const getBooks = (): Book[] => {
-    return (books ?? []).filter((book) =>
-      showReadingList
-        ? readingList.includes(`${book.title}-${book.readingLevel}`)
-        : true
-    );
+    return (books ?? [])
+      .filter((book) =>
+        showReadingList
+          ? readingList.includes(`${book.title}-${book.readingLevel}`)
+          : true
+      )
+      .filter((book) =>
+        searchValue && searchValue.length > 0
+          ? book.title.toLowerCase().includes(`${searchValue.toLowerCase()}`)
+          : true
+      );
   };
 
   if (loading) {
@@ -63,7 +72,11 @@ const Home: React.FC = () => {
           <strong>Ello Book List</strong>
         </Typography>
 
-        <SearchBooks books={books} />
+        <SearchBooks
+          books={books}
+          handleSearchValue={setSearchValue}
+          searchValue={searchValue}
+        />
       </Stack>
       <Container maxWidth={"md"} sx={{ py: 2 }}>
         <Stack
@@ -95,12 +108,22 @@ const Home: React.FC = () => {
           </ToggleButtonGroup>
         </Stack>
 
+        {searchValue && searchValue.length > 0 && (
+          <Stack justifyContent="center" sx={{ py: 2 }}>
+            <Typography variant="body2">
+              Showing Results for &apos;{`${searchValue}`}&apos;
+            </Typography>
+          </Stack>
+        )}
+
         <BookList
           books={getBooks()}
           readingList={readingList}
           onAddToReadingList={addBook}
           onRemoveFromReadingList={removeBook}
         />
+
+        {getBooks().length == 0 && <EmptyBookState searchValue={searchValue} />}
       </Container>
     </Box>
   );

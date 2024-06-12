@@ -11,11 +11,15 @@ import { Book } from "@/@types/Book";
 
 interface Props {
   books: Book[];
+  searchValue: string;
+  handleSearchValue: (newValue: string) => void;
 }
 
-export const SearchBooks: React.FC<Props> = ({ books }) => {
-  const [searchValue, setSearchValue] = useState("");
-
+export const SearchBooks: React.FC<Props> = ({
+  books,
+  searchValue,
+  handleSearchValue,
+}) => {
   const theme = useTheme();
 
   return (
@@ -36,7 +40,6 @@ export const SearchBooks: React.FC<Props> = ({ books }) => {
         </Typography>
         <div style={{ display: "flex", flex: 1 }}></div>
         <Autocomplete
-          freeSolo
           fullWidth
           options={books}
           groupBy={(option) => option.title.charAt(0)}
@@ -51,7 +54,7 @@ export const SearchBooks: React.FC<Props> = ({ books }) => {
           )}
           inputValue={searchValue}
           onInputChange={(event, newValue) => {
-            setSearchValue(newValue);
+            handleSearchValue(newValue);
           }}
         />
       </Stack>
