@@ -1,5 +1,8 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import type { AppProps } from "next/app";
+import { ApolloProvider } from '@apollo/client';
+import client from "@/graphql/client";
+
 const theme = createTheme({
   typography: {
     fontFamily: [
@@ -33,8 +36,10 @@ const theme = createTheme({
 });
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <ApolloProvider client={client}>
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </ApolloProvider>
   );
 }
