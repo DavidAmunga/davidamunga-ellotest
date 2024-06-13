@@ -12,6 +12,9 @@ This is my project
 
 Unzip the Folder shared on Email.
 Go to the project directory
+```bash
+  git clone 
+```
 
 ```bash
   cd davidamunga-ellotest
@@ -28,10 +31,5 @@ Start the project
 ```bash
   npm run dev
 ```
-
-
-## Optimizations
-
--
 
 
