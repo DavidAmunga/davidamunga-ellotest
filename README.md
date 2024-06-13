@@ -11,11 +11,11 @@ This is my project
 ## Run Locally
 
 Unzip the Folder shared on Email.
-Go to the project directory
 ```bash
-  git clone 
+git clone https://github.com/DavidAmunga/davidamunga-ellotest.git
 ```
 
+Go to the project directory
 ```bash
   cd davidamunga-ellotest
 ```
