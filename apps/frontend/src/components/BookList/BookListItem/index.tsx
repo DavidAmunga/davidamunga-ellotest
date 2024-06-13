@@ -91,7 +91,13 @@ export const BookListItem: React.FC<Props> = ({
             variant={"outlined"}
             size="small"
             fullWidth
-            sx={{ borderRadius: "50px" }}
+            sx={{
+              borderRadius: "50px",
+              color: isInReadingList ? "#F76434" : theme.palette.primary.main,
+              borderColor: isInReadingList
+                ? "#F76434"
+                : theme.palette.primary.main,
+            }}
             color={isInReadingList ? `error` : `primary`}
             startIcon={
               isInReadingList ? <RemoveCircle /> : <BookmarkAddRounded />
